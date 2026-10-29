@@ -31,6 +31,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.hmmi.login.AuthLoginActivity;
@@ -40,8 +41,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 public class DuelMainActivity extends AppCompatActivity {
@@ -360,8 +363,11 @@ public class DuelMainActivity extends AppCompatActivity {
         FirebaseMessaging.getInstance().getToken()
                 .addOnSuccessListener(token -> {
                     if (!TextUtils.isEmpty(token)) {
-                        usersRef.child(myUid).child("fcmToken").setValue(token);
-                        usersRef.child(myUid).child("fcmTokenUpdatedAt").setValue(System.currentTimeMillis());
+                        Map<String, Object> map = new HashMap<>();
+                        map.put("fcmToken", token);
+                        map.put("fcmTokenUpdatedAt", ServerValue.TIMESTAMP);
+                        if (!TextUtils.isEmpty(myDeviceId)) map.put("deviceId", myDeviceId);
+                        usersRef.child(myUid).updateChildren(map);
                     }
                 });
     }
