@@ -492,7 +492,7 @@ public class MyDuelActivity extends AppCompatActivity {
     ) {
         DatabaseReference root = FirebaseDatabase.getInstance().getReference();
 
-        root.child("user").child(rivalUid).addListenerForSingleValueEvent(new ValueEventListener() {
+        root.child("users").child(rivalUid).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot rivalSnap) {
                 String rivalDeviceId = safe(rivalSnap.child("deviceId").getValue(String.class), "");
