@@ -414,6 +414,7 @@ public class DuelMainActivity extends AppCompatActivity {
         if (TextUtils.isEmpty(user.fullname)) user.fullname = "Oyuncu";
         else user.fullname = user.fullname.trim();
 
+        if (TextUtils.isEmpty(user.kullaniciadi)) user.kullaniciadi = user.username;
         if (TextUtils.isEmpty(user.kullaniciadi)) user.kullaniciadi = user.fullname;
         user.kullaniciadi = cleanUsername(user.kullaniciadi);
 
