@@ -19,6 +19,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.*;
 import com.hmmi.sto.R;
+import java.util.HashMap;
+import java.util.Map;
 public class ProfileActivity extends AppCompatActivity {
 
     private EditText edtFullName, edtPassword, edtPasswordAgain;
@@ -245,7 +247,21 @@ public class ProfileActivity extends AppCompatActivity {
                 .addOnSuccessListener(unused -> {
                     DatabaseReference db = FirebaseDatabase.getInstance().getReference();
 
-                    db.child("users").child(uid).removeValue()
+                    // usernames/{username} kaydı da silinmezse kullanıcı adı sonsuza kadar kilitli kalır
+                    db.child("users").child(uid).child("username").get()
+                            .continueWithTask(t -> {
+                                Map<String, Object> deletes = new HashMap<>();
+                                deletes.put("users/" + uid, null);
+
+                                String username = t.isSuccessful() && t.getResult() != null
+                                        ? t.getResult().getValue(String.class)
+                                        : null;
+                                if (!TextUtils.isEmpty(username)) {
+                                    deletes.put("usernames/" + username, null);
+                                }
+
+                                return db.updateChildren(deletes);
+                            })
                             .addOnSuccessListener(unused2 -> {
                                 currentUser.delete()
                                         .addOnSuccessListener(unused3 -> {
