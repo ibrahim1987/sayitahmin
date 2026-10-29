@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Tahmin Düellosu</string>
+    <string name="txtSignIn">Hesabım var <font fgcolor='#AEE6FF'><b><u>Giriş Yap</u></b></font></string>
+    <string name="txtCreateAccount">Hesabınız yok mu? <font fgcolor='#AEE6FF'><b><u>Hesap Oluştur</u></b></font></string>
+</resources>

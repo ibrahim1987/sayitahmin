@@ -1,0 +1,25 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Kademeli yükseliş çizgisi -->
+    <path
+        android:fillColor="@android:color/transparent"
+        android:pathData="M4,16 L9,11 L13,14 L20,7"
+        android:strokeColor="#7CFF8A"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:strokeWidth="2.6" />
+
+    <!-- Ok ucu -->
+    <path
+        android:fillColor="@android:color/transparent"
+        android:pathData="M16.8,7 H20 V10.2"
+        android:strokeColor="#7CFF8A"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:strokeWidth="2.6" />
+
+</vector>

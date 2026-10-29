@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="86dp"
+    android:layout_marginBottom="9dp"
+    android:background="@drawable/bg_duel_rank_item"
+    android:elevation="2dp"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingStart="10dp"
+    android:paddingEnd="8dp">
+
+    <TextView
+        android:id="@+id/tvRankNumber"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:background="@drawable/bg_small_badge"
+        android:gravity="center"
+        android:text="1"
+        android:textColor="@color/orange"
+        android:textSize="13sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Alper Ata Çelik"
+            android:textColor="#1F2937"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvTotalPoint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="🏆 2450 Puan"
+            android:textColor="#6B7280"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutWinPoint"
+        android:layout_width="66dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="6dp"
+        android:background="@drawable/bg_icon_soft"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvWinLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kazanan"
+            android:textColor="#6B7280"
+            android:textSize="9sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvWinPoint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+120"
+            android:textColor="#16A34A"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/btnDuelInvite"
+        android:layout_width="76dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="7dp"
+        android:background="@drawable/bg_button_primary_round"
+        android:gravity="center"
+        android:text="Düello"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+</LinearLayout>

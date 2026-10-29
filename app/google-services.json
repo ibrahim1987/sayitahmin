@@ -1,0 +1,79 @@
+{
+  "project_info": {
+    "project_number": "891894035258",
+    "firebase_url": "https://e-okul-c3181.firebaseio.com",
+    "project_id": "e-okul-c3181",
+    "storage_bucket": "e-okul-c3181.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:891894035258:android:e81ba611e8f527ace1d603",
+        "android_client_info": {
+          "package_name": "com.hmmfi.guessthenumber"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "891894035258-apv6nsk0pjd1lv3t2ahv62e8tmc4d8ec.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-s8N4pggU8UiXd6owGZYBnZlwGAPlBCI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "891894035258-apv6nsk0pjd1lv3t2ahv62e8tmc4d8ec.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      },
+      "admob_app_id": "ca-app-pub-2454119550999139~6449626539"
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:891894035258:android:b664ab426353bdcae1d603",
+        "android_client_info": {
+          "package_name": "com.hmmi.sto"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "891894035258-sv6fd3cid767akdlmjjrvaaih75m7imn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hmmi.sto",
+            "certificate_hash": "e5f1e4c903a6a2637ee606e1591c6dd0dcf55a71"
+          }
+        },
+        {
+          "client_id": "891894035258-apv6nsk0pjd1lv3t2ahv62e8tmc4d8ec.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-s8N4pggU8UiXd6owGZYBnZlwGAPlBCI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "891894035258-apv6nsk0pjd1lv3t2ahv62e8tmc4d8ec.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      },
+      "admob_app_id": "ca-app-pub-2454119550999139~1276660719"
+    }
+  ],
+  "configuration_version": "1"
+}

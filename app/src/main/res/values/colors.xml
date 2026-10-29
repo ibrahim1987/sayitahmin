@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#5BD1DD</color>
+    <color name="colorPrimaryDark">#5BD1DD</color>
+    <color name="colorAccent">#03DAC5</color>
+    <color name="progress_start">#fff953</color>
+    <color name="progress_center">#ff8000</color>
+    <color name="progress_end">#ff5100</color>
+
+    <!-- Text -->
+    <color name="week_letter">#757575</color>
+    <color name="white_text">#fff</color>
+
+    <!-- Background -->
+
+    <color name="blue_background">#00abe4</color>
+    <color name="default_light_grey_bg">#f5f5f5</color>
+
+    <color name="purple_200">#5BD1DD</color>
+    <color name="purple_500">#5BD1DD</color>
+    <color name="purple_700">#5BD1DD</color>
+    <color name="teal_200">#5BD1DD</color>
+    <color name="teal_700">#5BD1DD</color>
+
+
+
+    <color name="bg_main">#F6FAFF</color>
+    <color name="white">#FFFFFF</color>
+    <color name="text_dark">#071A3D</color>
+    <color name="text_gray">#64708A</color>
+    <color name="primary_blue">#1976FF</color>
+    <color name="blue_dark">#0B4FEA</color>
+    <color name="soft_blue">#EAF3FF</color>
+    <color name="green">#18B86B</color>
+    <color name="red">#FF4D4D</color>
+    <color name="orange">#FF8A00</color>
+    <color name="purple">#7B61FF</color>
+    <color name="dark_blue">#32357A</color>
+    <color name="color4" >#ffe0ac</color>
+</resources>
