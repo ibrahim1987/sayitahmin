@@ -44,6 +44,7 @@ import java.util.Set;
 public class DuelGameActivity extends AppCompatActivity {
 
     public static final String DUELS_NODE = "zekaduels";
+    public static final String USERS_NODE = "users";
 
     private TextView btnBack, btnLeaveDuel;
     private TextView tvMyName, tvMyAvatar, tvOpponentName, tvOpponentAvatar;
@@ -205,6 +206,13 @@ public class DuelGameActivity extends AppCompatActivity {
                 isFinished = isTerminalStatus(status);
 
                 updateInputLimit();
+
+                if ("BITTI".equals(status)
+                        && !winnerUid.isEmpty()
+                        && !myUid.equals(winnerUid)
+                        && !Boolean.TRUE.equals(snapshot.child("loserStatsApplied").getValue(Boolean.class))) {
+                    DuelLoserStats.applyIfNeeded(duelId, myUid);
+                }
 
                 if (secretNumber.isEmpty() && isCreator && !creatingSecret && !isFinished) {
                     createSecretNumberIfNeeded();
@@ -654,11 +662,11 @@ public class DuelGameActivity extends AppCompatActivity {
         final long safeWinPoint = winPoint > 0 ? winPoint : 1000L;
         final String currentMonthKey = getCurrentMonthKey();
 
-        rootRef.child("user").child(winnerUid)
+        rootRef.child(USERS_NODE).child(winnerUid)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot winnerSnap) {
-                        rootRef.child("user").child(loserUid)
+                        rootRef.child(USERS_NODE).child(loserUid)
                                 .addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot loserSnap) {
@@ -693,25 +701,19 @@ public class DuelGameActivity extends AppCompatActivity {
                                             oldMonthlyPoint = 0L;
                                         }
 
-                                        long oldWinCount = readLong(winnerSnap.child("kazandigiDuelo").getValue(), 0L);
-                                        long oldWinnerTotal = readLong(winnerSnap.child("toplamDuelo").getValue(), 0L);
-                                        long oldLoserTotal = readLong(loserSnap.child("toplamDuelo").getValue(), 0L);
-
-                                        String winnerBase = "user/" + winnerUid + "/";
-                                        String loserBase = "user/" + loserUid + "/";
+                                        // Kurallar users/$uid yazmasına sadece sahibine izin veriyor:
+                                        // kazanan sadece kendi kaydını günceller, kaybeden kendi
+                                        // toplamDuelo'sunu DuelLoserStats ile kendisi artırır.
+                                        String winnerBase = USERS_NODE + "/" + winnerUid + "/";
 
                                         updates.put(winnerBase + "puan", oldPuan + safeWinPoint);
                                         updates.put(winnerBase + "duelPoint", oldDuelPoint + safeWinPoint);
                                         updates.put(winnerBase + "monthlyDuelPoint", oldMonthlyPoint + safeWinPoint);
                                         updates.put(winnerBase + "monthlyDuelMonthKey", currentMonthKey);
-                                        updates.put(winnerBase + "kazandigiDuelo", oldWinCount + 1L);
-                                        updates.put(winnerBase + "toplamDuelo", oldWinnerTotal + 1L);
+                                        updates.put(winnerBase + "kazandigiDuelo", ServerValue.increment(1));
+                                        updates.put(winnerBase + "toplamDuelo", ServerValue.increment(1));
                                         updates.put(winnerBase + "lastDuelId", duelId);
                                         updates.put(winnerBase + "updatedAt", ServerValue.TIMESTAMP);
-
-                                        updates.put(loserBase + "toplamDuelo", oldLoserTotal + 1L);
-                                        updates.put(loserBase + "lastDuelId", duelId);
-                                        updates.put(loserBase + "updatedAt", ServerValue.TIMESTAMP);
 
                                         putDuelStatsUpdate(updates, winnerUid, loserUid, sameDevice, sameIp);
                                         putDuelStatsUpdate(updates, loserUid, winnerUid, sameDevice, sameIp);
@@ -731,6 +733,9 @@ public class DuelGameActivity extends AppCompatActivity {
                                                         Toast.LENGTH_SHORT
                                                 ).show();
                                             } else {
+                                                // Ödül tekrar denenebilsin diye kilidi geri aç
+                                                duelRef.child("rewardApplied").setValue(false);
+
                                                 String err = task.getException() == null
                                                         ? "Bilinmeyen hata"
                                                         : task.getException().getMessage();

@@ -9,6 +9,7 @@ public class DuelPlayerModel {
     public String deviceId = "";
     public String lastIp = "";
     public String kullaniciadi = "";
+    public String username = "";
     public long puan = 0;
     public long duelPoint = 0;
     public long monthlyDuelPoint = 0;

@@ -166,7 +166,8 @@ public class CreateDuelInviteActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String fullname = safe(snapshot.child("fullname").getValue(String.class), "");
-                String kullaniciadi = safe(snapshot.child("kullaniciadi").getValue(String.class), "");
+                String kullaniciadi = safe(snapshot.child("kullaniciadi").getValue(String.class),
+                        safe(snapshot.child("username").getValue(String.class), ""));
                 String name = safe(snapshot.child("name").getValue(String.class), "");
 
                 if (!fullname.isEmpty()) {

@@ -241,6 +241,13 @@ public class MyDuelActivity extends AppCompatActivity {
                             historyList.add(duel);
                         }
 
+                        if ("BITTI".equals(status)
+                                && !safe(duel.winnerUid, "").isEmpty()
+                                && !myUid.equals(duel.winnerUid)
+                                && !duel.loserStatsApplied) {
+                            DuelLoserStats.applyIfNeeded(duel.duelId, myUid);
+                        }
+
                     } else if ("DAVET".equals(status)) {
                         pendingList.add(duel);
 
@@ -492,7 +499,7 @@ public class MyDuelActivity extends AppCompatActivity {
     ) {
         DatabaseReference root = FirebaseDatabase.getInstance().getReference();
 
-        root.child("user").child(rivalUid).addListenerForSingleValueEvent(new ValueEventListener() {
+        root.child("users").child(rivalUid).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot rivalSnap) {
                 String rivalDeviceId = safe(rivalSnap.child("deviceId").getValue(String.class), "");
@@ -625,6 +632,7 @@ public class MyDuelActivity extends AppCompatActivity {
         public int digitCount;
         public long winPoint;
         public long rewardPoint;
+        public boolean loserStatsApplied;
 
         public long createdAt;
         public long updatedAt;
